@@ -55,7 +55,7 @@ double average_analysis(const vector<Student_info>& students)
 {
 	vector<double> grades;
 	transform(students.begin(),students.end(), 
-			back_inserter(grades), average_grade);
+		back_inserter(grades), average_grade);
 	return median(grades);
 }
 
@@ -65,7 +65,7 @@ double optimistic_median(const Student_info& s)
 {
 	vector<double> nonzero;
 	remove_copy(s.homework.begin(), s.homework.end(), 
-			back_inserter(nonzero), 0);
+		back_inserter(nonzero), 0);
 	if (nonzero.empty())
 		return grade(s.midterm, s.final, 0);
 	else
@@ -90,7 +90,7 @@ void write_analysis(ostream& out, const string& name,
 				const vector<Student_info>& didnt)
 {
 	out << name << ":median(did) = " << analysis(did) 
-			<< ":median(didnt) = " << analysis(didnt) << endl;
+		<< ":median(didnt) = " << analysis(didnt) << endl;
 }
 //main function
 
@@ -115,5 +115,6 @@ int main(){
 	write_analysis(cout, "median", median_analysis, did, didnt);
 	write_analysis(cout, "average", average_analysis, did, didnt);
 	write_analysis(cout, "median of homework turned in", optimistic_median_analysis, did, didnt);
+	system("pause");
 	return 0;
 }
