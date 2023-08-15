@@ -61,7 +61,7 @@ class Frame_Pic: public Pic_base {
 	Frame_Pic(const Ptr<Pic_base>& pic):p(pic) {}
 
 	wd_sz width() const { return p->width() + 4; }
-	ht_sz height() const { return p->width() + 4; }
+	ht_sz height() const { return p->height() + 4; }
 	void display(std::ostream& , ht_sz, bool) const;
 };
 //----------------------------------split-line-----------------------------------
