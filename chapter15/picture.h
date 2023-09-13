@@ -71,7 +71,6 @@ class VCat_Pic: public Pic_base {
 	VCat_Pic(const Ptr<Pic_base>& t, const Ptr<Pic_base>& b):
 		top(t), bottom(b) {}
 
-
 	wd_sz width() const
 		{ return std::max(top->width(), bottom->width()); }
 	ht_sz height() const

@@ -3,13 +3,12 @@
 
 #include <iostream>
 #include <stdexcept>
-#include <cstddef>
+#include <cstdef>
 
-
-//--------------------------------split line---------------------------------
+//---------------------------------------------split-line-----------------
 template <class T> class Ptr {
 public:
-	void make_unique() {				
+	void make_unique() {
 		if (*refptr != 1) {
 			--*refptr;
 			refptr = new std::size_t(1);
@@ -21,13 +20,13 @@ public:
 //Ptr class has not provided functions qualified
 //so make_unique usually show up in class T
 
-	Ptr(): p(0), refptr(new std::size_t(1)) {}
+	Ptr() : p(0), refptr(new std::size_t(1)) {}
 	Ptr(T* t): p(t), refptr(new std::size_t(1)) {}
 	Ptr(const Ptr& h): p(h.p), refptr(h.refptr) { ++*refptr;}
 
 	Ptr& operator=(const Ptr& );
 	~Ptr();
-	operator bool() const { return p; }
+	operator bool() const { return p;}
 	T& operator*() const;
 	T* operator->() const;
 private:
@@ -61,10 +60,11 @@ template <class T>
 T* Ptr<T>::operator->() const
 {
 	if (p)
-		return p;// x->y equals to (x.operator->())->y;
+		return p;
 	throw std::runtime_error("unbound Ptr");
 }
 
+//------------------------------------split-line--------------------------
 template <class T> Ptr<T>::~Ptr()
 {
 	if (--*refptr == 0) {
@@ -72,37 +72,11 @@ template <class T> Ptr<T>::~Ptr()
 		delete p;
 	}
 }
-
-//--------------------------------split line---------------------------------
+//------------------------------------split-line--------------------------
 template <class T> T* clone(const T* tp)
 {
 	return tp->clone();
-}//global function 
-
-//--------------------------------split line---------------------------------
-//template<>
-//Vec<char>* clone(const Vec<char>* vp)
-//{
-//	return new Vec<char>(*vp);
-//}
-//an example of template spacialization 
-//which is created in casa of shortage of clone function in a target class
-//if a Vec<char>* argument is provided, the compiler would choose this spacialized version
-//instead of the template one
-
-//--------------------------------split line---------------------------------
-
-//template <class T>
-//bool compare(const Ptr<T>& left, const Ptr<T>& right)
-//{
-//	return left->value_to_compare() < right->value_to_compare();
-//}
-//
-//template<>
-//bool compare(const Ptr<Core>& left, const Ptr<Core>& right)
-//{
-//	return left->name() < right->name();
-//}
+}
 
 
-#endif
+
