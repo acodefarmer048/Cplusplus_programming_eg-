@@ -29,11 +29,12 @@ int get_next_prime(int beg)
 	
 bool is_intimate(int left, int right)
 {
-	int lsqr=sqrt(left), rsqr=sqrt(right);
-	int upmost= lsqr<rsqr ? lsqr : rsqr;
+	int upmost= left<right ? right : left;
 	for (int i=2; i <= upmost; i=get_next_prime(i)) {
-		if ( (left%i) != (right%i) ) {
+		if ((left % i == 0 && right % i != 0) ||
+			(right % i == 0 && left % i != 0) ){
 			return false;
+
 		}
 	}
 	return true;
