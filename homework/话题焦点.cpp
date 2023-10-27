@@ -6,6 +6,7 @@
 using std::cin; using std::cout;
 using std::endl; using std::map;
 using std::vector; using std::sort;
+using std::unique;
 
 int main()
 {
@@ -32,12 +33,12 @@ int main()
 	}
 	cout << popular << endl;
 	sort(citers.begin(), citers.end());
-	for (vector<int>::iterator it=citers.begin();
+	citers.erase(unique(citers.begin(), citers.end()), citers.end());
+	cout << citers[0];
+	for (vector<int>::iterator it=citers.begin()+1;
 		it!=citers.end(); ++it) {
-		cout << *it << " ";
+		cout << " " << *it ;
 	}
-	cout << "\b";
+
 	return 0;
 }
-	
-	
